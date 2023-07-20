@@ -20,6 +20,6 @@ module.exports.NotFoundAPI = (app) => {
     router.all('*', (req, res) => {
         Response.error(res, new createError.NotFound());
     })
-
+    console.log("pirobos");
     app.use('/', router)
 }
