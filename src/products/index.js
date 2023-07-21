@@ -1,6 +1,8 @@
 const express = require('express');
+const serverless = require('serverless-http');
 
 const { ProductsController } = require('./controller');
+const ServerlessHttp = require('serverless-http');
 
 const router = express.Router();
 
@@ -14,4 +16,6 @@ module.exports.ProductsAPI = (app) => {
     .delete('/:id', ProductsController.deleteProducts);
 
     app.use('/api/products', router)
+    
 }
+module.exports.handler = serverless(app);

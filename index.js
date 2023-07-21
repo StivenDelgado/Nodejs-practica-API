@@ -5,6 +5,7 @@ const { Config } = require('./src/config');
 const { ProductsAPI } = require('./src/products');
 const { UsersAPI } = require('./src/users');
 const {IndexAPI, NotFoundAPI } = require('./src/index/index');
+const { handler } = require('./src/products/index');
 
 const app = express();
 
@@ -14,6 +15,7 @@ IndexAPI(app);
 ProductsAPI(app);
 UsersAPI(app);
 NotFoundAPI(app);
+handler(app)
 
 //modulos
 app.listen(Config.port, () => {
