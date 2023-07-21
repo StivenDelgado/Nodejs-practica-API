@@ -2,9 +2,10 @@ const express = require('express');
 const serverless = require('serverless-http');
 
 const { ProductsController } = require('./controller');
-const ServerlessHttp = require('serverless-http');
-
+const  cors  = require('cors');
 const router = express.Router();
+
+const whiteList = ['http://localhost:3000', 'http://localhost:3001']
 
 module.exports.ProductsAPI = (app) => {
     router
@@ -14,8 +15,9 @@ module.exports.ProductsAPI = (app) => {
     .post('/', ProductsController.createProduct)
     .put('/', )
     .delete('/:id', ProductsController.deleteProducts);
-
+    app.use(cors({
+        origin: whiteList
+    }))
     app.use('/api/products', router)
     
 }
-module.exports.handler = serverless(app);
